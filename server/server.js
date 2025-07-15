@@ -26,9 +26,15 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://tshirt-ten.vercel.app",
+  "https://tshirt-nbn5bet2j-varuns-projects-30000ad4.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins, // ✅ array allowed here
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -40,6 +46,7 @@ app.use(
     credentials: true,
   })
 );
+
 
 app.use(cookieParser());
 app.use(express.json());
